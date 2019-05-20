@@ -8,6 +8,11 @@
             android:id="@+id/navigation_web_view"
             android:title="WebView" />
 
+        <item
+            android:id="@+id/navigation_processing"
+            android:title="Processing" />
+
+
     </group>
 
     <!--<item android:title="Communicate">-->

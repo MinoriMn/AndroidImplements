@@ -1,5 +1,6 @@
 package com.gmail.webtest;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -11,11 +12,14 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.gmail.webtest.fragment.ProcessingFragment;
 import com.gmail.webtest.fragment.WebViewFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
+
+    private Fragment fragment;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +36,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         ((NavigationView)findViewById(R.id.nav_view)).setNavigationItemSelectedListener(this);
 
-        fragmentTransaction(new WebViewFragment());
+        fragment = new WebViewFragment();
+        fragmentTransaction(fragment);
     }
 
     private void fragmentTransaction(Fragment fragment){
@@ -56,10 +61,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.closeDrawer(GravityCompat.START);
         switch (menuItem.getItemId()){
             case R.id.navigation_web_view:
-                fragmentTransaction(new WebViewFragment());
+                fragment = new WebViewFragment();
+                break;
+
+            case R.id.navigation_processing:
+                fragment = new ProcessingFragment();
                 break;
         }
+        fragmentTransaction(fragment);
 
         return true;
+    }
+
+    /**
+     * Needed by ProcessingFragment
+     * @param intent
+     */
+    @Override
+    protected void onNewIntent(Intent intent) {
+        if(fragment instanceof ProcessingFragment){
+            ((ProcessingFragment)fragment).onNewIntent(intent);
+        }else {
+            super.onNewIntent(intent);
+        }
     }
 }
