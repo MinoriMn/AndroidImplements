@@ -2,9 +2,9 @@ package com.gmail.webtest.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +13,6 @@ import android.widget.FrameLayout;
 import com.gmail.webtest.R;
 import com.gmail.webtest.processing.TestSketch;
 
-import processing.android.CompatUtils;
 import processing.android.PFragment;
 import processing.core.PApplet;
 
@@ -34,6 +33,7 @@ public class ProcessingFragment extends Fragment {
             public void run() {
                 sketch = new TestSketch(frameLayout.getWidth(), frameLayout.getHeight());
                 PFragment fragment = new PFragment(sketch);
+                //castableなので問題なし
                 fragment.setView(frameLayout, getActivity());
             }
         });
