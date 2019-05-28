@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- List Search -->
+    <dimen name="list_search_item_text_size_large">22sp</dimen>
+    <dimen name="list_search_item_text_size_medium">16sp</dimen>
+    <dimen name="list_search_item_text_size_small">14sp</dimen>
+</resources>

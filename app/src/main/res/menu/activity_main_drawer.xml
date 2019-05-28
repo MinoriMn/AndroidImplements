@@ -12,6 +12,10 @@
             android:id="@+id/navigation_processing"
             android:title="Processing" />
 
+        <item
+            android:id="@+id/navigation_list_search"
+            android:title="ListSearch" />
+
 
     </group>
 
