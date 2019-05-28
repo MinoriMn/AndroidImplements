@@ -14,6 +14,7 @@ import android.view.MenuItem;
 
 import com.gmail.webtest.fragment.ProcessingFragment;
 import com.gmail.webtest.fragment.WebViewFragment;
+import com.gmail.webtest.fragment.list_search.SearchViewFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -66,6 +67,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.navigation_processing:
                 fragment = new ProcessingFragment();
+                break;
+
+            case R.id.navigation_list_search:
+                fragment = new SearchViewFragment();
                 break;
         }
         fragmentTransaction(fragment);
