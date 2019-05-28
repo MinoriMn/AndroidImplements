@@ -14,9 +14,9 @@ import java.util.List;
 public class CardItemAdapter extends ArrayAdapter<CardItem> {
     List<CardItem> cardItems;
 
-    public CardItemAdapter(Context context, int resource, List<CardItem> objects, List<CardItem> cardItems) {
+    public CardItemAdapter(Context context, int resource, List<CardItem> objects) {
         super(context, resource, objects);
-        this.cardItems = cardItems;
+        this.cardItems = objects;
     }
 
     @Override
