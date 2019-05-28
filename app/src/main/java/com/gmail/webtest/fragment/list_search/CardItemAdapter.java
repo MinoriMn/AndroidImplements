@@ -5,14 +5,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
 import android.widget.TextView;
 
 import com.gmail.webtest.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CardItemAdapter extends ArrayAdapter<CardItem> {
     List<CardItem> cardItems;
+    List<CardItem> filteredCardItems;
 
     public CardItemAdapter(Context context, int resource, List<CardItem> objects) {
         super(context, resource, objects);
@@ -50,6 +53,45 @@ public class CardItemAdapter extends ArrayAdapter<CardItem> {
         }
 
         return convertView;
+    }
+
+    public Filter getFilter() {
+        return new Filter() {
+            //フィルタリング実行
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                final FilterResults results = new FilterResults();
+                final ArrayList<CardItem> resultsList = new ArrayList<CardItem>();
+
+                //itemのバックアップ
+                if (filteredCardItems == null) {
+                    filteredCardItems = cardItems;
+                }
+
+                if (constraint != null) {
+                    if (filteredCardItems != null && filteredCardItems.size() > 0) {
+                        for (final CardItem item : filteredCardItems) {
+                            //検索条件をここで決定する(例では、content1,content2,content3の一つにでも検索文言が含まれれば結果に表示される)
+                            if (item.content1.toLowerCase().contains(constraint.toString()) ||
+                                    item.content2.toLowerCase().contains(constraint.toString()) ||
+                                    item.content3.toLowerCase().contains(constraint.toString())) {
+                                resultsList.add(item);
+                            }
+                        }
+                    }
+                    results.values = resultsList;
+                }
+                return results;
+            }
+
+            //フィルタリング反映
+            @SuppressWarnings("unchecked")
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                cardItems = (ArrayList<CardItem>) results.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public static class ViewHolder{
