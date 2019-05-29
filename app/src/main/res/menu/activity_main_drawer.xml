@@ -16,6 +16,10 @@
             android:id="@+id/navigation_list_search"
             android:title="ListSearch" />
 
+        <item
+            android:id="@+id/navigation_mosaic_bitmap"
+            android:title="MosaicBitmap" />
+
 
     </group>
 
