@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +12,10 @@ import android.widget.FrameLayout;
 import com.gmail.webtest.R;
 import com.gmail.webtest.processing.TestSketch;
 
-import processing.android.CompatUtils;
 import processing.android.PFragment;
 import processing.core.PApplet;
 
-public class ProcessingFragment extends Fragment {
+public class ProcessingFragment extends BaseFragment {
     private PApplet sketch;
 
     @Nullable
