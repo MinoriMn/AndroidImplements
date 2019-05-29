@@ -90,4 +90,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onNewIntent(intent);
         }
     }
+
+    public void setTitleText(String s){
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar.setTitle(s);
+    }
 }
