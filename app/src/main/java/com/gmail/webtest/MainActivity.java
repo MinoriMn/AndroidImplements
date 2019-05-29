@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         ((NavigationView)findViewById(R.id.nav_view)).setNavigationItemSelectedListener(this);
 
-        fragment = new WebViewFragment();
+        fragment = new SearchViewFragment();
         fragmentTransaction(fragment);
     }
 

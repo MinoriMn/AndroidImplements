@@ -3,9 +3,7 @@ package com.gmail.webtest.fragment.list_search;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.SearchView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -14,12 +12,13 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.gmail.webtest.R;
+import com.gmail.webtest.fragment.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class SearchViewFragment extends Fragment implements SearchView.OnQueryTextListener {
+public class SearchViewFragment extends BaseFragment implements SearchView.OnQueryTextListener {
     List<CardItem> cards;
     CardItemAdapter adapter;
     ListView listView;
