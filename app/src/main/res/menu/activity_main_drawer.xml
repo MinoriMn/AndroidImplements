@@ -20,7 +20,9 @@
             android:id="@+id/navigation_mosaic_bitmap"
             android:title="MosaicBitmap" />
 
-
+        <item
+            android:id="@+id/navigation_check_work_2019"
+            android:title="CheckWork2019" />
     </group>
 
     <!--<item android:title="Communicate">-->

@@ -1,4 +1,4 @@
-package com.gmail.webtest;
+package com.gmail.webtest.activity;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.gmail.webtest.R;
 import com.gmail.webtest.fragment.MosaicBitmapFragment;
 import com.gmail.webtest.fragment.ProcessingFragment;
 import com.gmail.webtest.fragment.WebViewFragment;
@@ -77,6 +78,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.navigation_mosaic_bitmap:
                 fragment = new MosaicBitmapFragment();
                 break;
+
+            case R.id.navigation_check_work_2019:
+                Intent intent = new Intent(this, CheckWork2019Activity.class);
+                startActivity(intent);
+                return true;
         }
         fragmentTransaction(fragment);
 
