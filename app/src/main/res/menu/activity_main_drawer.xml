@@ -23,6 +23,10 @@
         <item
             android:id="@+id/navigation_check_work_2019"
             android:title="CheckWork2019" />
+
+        <item
+            android:id="@+id/navigation_realm_memo_list"
+            android:title="RealmMemoList" />
     </group>
 
     <!--<item android:title="Communicate">-->

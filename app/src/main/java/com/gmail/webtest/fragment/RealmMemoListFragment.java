@@ -9,19 +9,34 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.gmail.webtest.R;
 import com.gmail.webtest.activity.RealmMemoActivity;
+import com.gmail.webtest.adapter.RealmMemoAdapter;
+import com.gmail.webtest.realm.RealmMemoData;
+
+import java.util.List;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class RealmMemoListFragment extends Fragment {
     private static final int REQUEST_NEW_MEMO = 100;
     private static final int REQUEST_MEMO_EDIT = 101;
+
+    private Realm realm;
+
+    private ListView listView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_realm_memo_list, container, false);
+
+        realm = Realm.getDefaultInstance();
 
         ((FloatingActionButton)view.findViewById(R.id.new_memo_fab)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,6 +47,27 @@ public class RealmMemoListFragment extends Fragment {
             }
         });
 
+        listView = (ListView)view.findViewById(R.id.realm_memo_list);
+
+        RealmResults<RealmMemoData> results = realm.where(RealmMemoData.class).findAll();
+        List<RealmMemoData> items = realm.copyFromRealm(results);
+
+        RealmMemoAdapter adapter = new RealmMemoAdapter(getContext(), R.layout.layout_realm_memo, items);
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
+
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        realm.close();
     }
 }
