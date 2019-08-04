@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.closeDrawer(GravityCompat.START);
         switch (menuItem.getItemId()){
             case R.id.navigation_web_view:
-                fragment = new WebViewFragment();
+                fragmentTransaction(new WebViewFragment());
                 break;
 
             case R.id.navigation_processing:
