@@ -41,13 +41,31 @@ public class RealmMemoListFragment extends Fragment {
         ((FloatingActionButton)view.findViewById(R.id.new_memo_fab)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
+                Intent intent = new Intent(getContext(), RealmMemoActivity.class);
                 intent.putExtra(RealmMemoActivity.EXTRA_KEY_IS_NEW, true);
-                startActivityForResult(intent, REQUEST_NEW_MEMO);
+                startActivity(intent);
             }
         });
 
         listView = (ListView)view.findViewById(R.id.realm_memo_list);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                RealmMemoData realmMemoData = (RealmMemoData)parent.getItemAtPosition(position);
+                Intent intent = new Intent(getContext(), RealmMemoActivity.class);
+                intent.putExtra(RealmMemoActivity.EXTRA_KEY_IS_NEW, false);
+                intent.putExtra(RealmMemoActivity.EXTRA_KEY_DATE_STRING, realmMemoData.dateString);
+                startActivity(intent);
+            }
+        });
+
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
         RealmResults<RealmMemoData> results = realm.where(RealmMemoData.class).findAll();
         List<RealmMemoData> items = realm.copyFromRealm(results);
@@ -55,14 +73,6 @@ public class RealmMemoListFragment extends Fragment {
         RealmMemoAdapter adapter = new RealmMemoAdapter(getContext(), R.layout.layout_realm_memo, items);
         listView.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-            }
-        });
-
-        return view;
     }
 
     @Override

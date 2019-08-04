@@ -17,6 +17,7 @@ import io.realm.Realm;
 
 public class RealmMemoActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String EXTRA_KEY_IS_NEW = "EXTRA_KEY_IS_NEW";
+    public static final String EXTRA_KEY_DATE_STRING = "EXTRA_KEY_DATE_STRING";
     private boolean isNew = false;
 
     private EditText titleEditText, contentEditText;
@@ -39,6 +40,9 @@ public class RealmMemoActivity extends AppCompatActivity implements View.OnClick
             ((Button)findViewById(R.id.memo_create_button)).setText("作成");
         }else{
             ((Button)findViewById(R.id.memo_create_button)).setText("更新");
+            final RealmMemoData realmMemoData = realm.where(RealmMemoData.class).equalTo("dateString", getIntent().getStringExtra(EXTRA_KEY_DATE_STRING)).findFirst();
+            titleEditText.setText(realmMemoData.title);
+            contentEditText.setText(realmMemoData.content);
         }
         findViewById(R.id.memo_create_button).setOnClickListener(this);
     }
@@ -62,7 +66,16 @@ public class RealmMemoActivity extends AppCompatActivity implements View.OnClick
                 }
             });
         }else{
+            final RealmMemoData realmMemoData = realm.where(RealmMemoData.class).equalTo("dateString", getIntent().getStringExtra(EXTRA_KEY_DATE_STRING)).findFirst();
 
+            realm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    realmMemoData.title = title;
+                    realmMemoData.content = content;
+                    realmMemoData.dateString = dateString;
+                }
+            });
         }
 
         finish();

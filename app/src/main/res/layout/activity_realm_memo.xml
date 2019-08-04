@@ -31,8 +31,8 @@
             android:layout_weight="1"
             android:ems="10"
             android:gravity="top"
-            android:hint="メモ"
-            android:inputType="textPersonName" />
+            android:inputType="textMultiLine"
+            android:hint="メモ" />
 
         <Button
             android:id="@+id/memo_create_button"
