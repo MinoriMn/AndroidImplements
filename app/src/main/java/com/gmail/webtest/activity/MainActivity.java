@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import com.gmail.webtest.R;
 import com.gmail.webtest.fragment.MosaicBitmapFragment;
 import com.gmail.webtest.fragment.ProcessingFragment;
+import com.gmail.webtest.fragment.RealmMemoListFragment;
 import com.gmail.webtest.fragment.WebViewFragment;
 import com.gmail.webtest.fragment.list_search.SearchViewFragment;
 
@@ -83,6 +84,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent = new Intent(this, CheckWork2019Activity.class);
                 startActivity(intent);
                 return true;
+
+            case R.id.navigation_realm_memo_list:
+                fragment = new RealmMemoListFragment();
+                break;
         }
         fragmentTransaction(fragment);
 
